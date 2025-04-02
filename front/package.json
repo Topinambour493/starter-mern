@@ -6,7 +6,7 @@
     "@hookform/resolvers": "^3.10.0",
     "@reduxjs/toolkit": "^2.5.1",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
+    "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
@@ -27,6 +27,9 @@
     "yup": "^1.6.1"
   },
   "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,5 +52,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@typescript-eslint/eslint-plugin": "^8.27.0",
+    "@typescript-eslint/parser": "^8.27.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "typescript-eslint": "^8.27.0"
   }
 }

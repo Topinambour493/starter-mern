@@ -1,31 +1,23 @@
-import axios, {
-  AxiosError,
-  AxiosRequestHeaders
-} from 'axios';
+import axios from 'axios';
 
-import {useSelector, useDispatch} from 'react-redux';
-import {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {disconnected, refreshToken} from "../Redux/userSlice";
-
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { disconnected, refreshToken } from '../Redux/userSlice';
 
 const MyAxios = axios.create({
   baseURL: 'http://localhost:5000/api',
 });
 
-const parseErrorMessage = (errResponse) => {
-  console.log('errResoponse', errResponse);
-  return errResponse?.data ? errResponse.data?.errors[0] : '';
-};
-const AxiosInstance = ({children}) => {
-  const navigate = useNavigate();
+
+const AxiosInstance = ({ children }) => {
   const dispatch = useDispatch();
   const [isSet, setIsSet] = useState(false);
 
   useEffect(() => {
     const reqInterceptor = (config) => {
-      config.headers['Authorization'] = `Bearer ${localStorage.getItem("accessToken")}`;
-      config.headers["Content-Type"] = 'application/json';
+      config.headers['Authorization'] =
+        `Bearer ${localStorage.getItem('accessToken')}`;
+      config.headers['Content-Type'] = 'application/json';
       return config;
     };
 
@@ -34,28 +26,31 @@ const AxiosInstance = ({children}) => {
     };
 
     const errInterceptor = async (error) => {
-      console.log("message: ", error.response.data.error);
+      console.log('message: ', error.response.data.error);
       const originalRequest = error.config;
       if (error.response.status === 401) {
-        if (!localStorage.getItem("refreshToken")) {
-          console.log("Pas de refreshToken, déconnexion...");
+        if (!localStorage.getItem('refreshToken')) {
+          console.log('Pas de refreshToken, déconnexion...');
           await dispatch(disconnected());
           return Promise.reject(error.response.data);
         }
 
         try {
-          console.log("Token expiré, tentative de rafraîchissement...");
-          await dispatch(refreshToken())// Réinitialiser après succès
-          if (localStorage.getItem("accessToken")){
-            console.log('accessToken rafraichi, nouvelle tentative')
+          console.log('Token expiré, tentative de rafraîchissement...');
+          await dispatch(refreshToken()); // Réinitialiser après succès
+          if (localStorage.getItem('accessToken')) {
+            console.log('accessToken rafraichi, nouvelle tentative');
             return MyAxios(originalRequest); // nouvelle tentative avec token rafraichi
           } else {
-            console.log("refreshToken invalide, déconnexion", error.response.data)
+            console.log(
+              'refreshToken invalide, déconnexion',
+              error.response.data,
+            );
             await dispatch(disconnected());
             return Promise.reject(error.response.data);
           }
         } catch (err) {
-          console.error("Erreur lors du rafraîchissement du token:", err);
+          console.error('Erreur lors du rafraîchissement du token:', err);
           await dispatch(disconnected());
           return Promise.reject(err.response.data);
         }
@@ -67,12 +62,12 @@ const AxiosInstance = ({children}) => {
       reqInterceptor,
       (error) => {
         console.log('interceptor req error', error);
-      }
+      },
     );
 
     const interceptorRes = MyAxios.interceptors.response.use(
       resInterceptor,
-      errInterceptor
+      errInterceptor,
     );
 
     setIsSet(true);
@@ -85,6 +80,5 @@ const AxiosInstance = ({children}) => {
   return isSet && children;
 };
 
-
 export default MyAxios;
-export {AxiosInstance};
+export { AxiosInstance };

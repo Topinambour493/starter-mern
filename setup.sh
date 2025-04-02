@@ -4,6 +4,7 @@
 CURRENT_DIR=$(basename "$PWD")
 
 # Déplace les dossiers front et back dans le dossier parent
+mv front ../
 mv back ../
 
 # Remonte d'un niveau
