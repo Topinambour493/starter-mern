@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Tarte ax fraises",
+    "description": "des fraises muris au soleil",
+    "image_url": "https://img.freepik.com/photos-gratuite/tarte-aux-fraises-chantilly-decoree-feuilles-menthe_2829-19978.jpg",
+    "dishType": "dessert",
+    "price": 15.56
+  },
+  {
+    "id": 2,
+    "name": "Tarte au melon",
+    "description": "des meklons muris au soleil",
+    "image_url": "https://c2.staticflickr.com/9/8282/29032683033_d781da55e2_n.jpg",
+    "dishType": "dessert",
+    "price": 6
+  }
+]

@@ -1,0 +1,110 @@
+/* Appliquer la police à toute l'application */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f9; /* Fond gris clair pour la page */
+}
+
+/* Conteneur principal du formulaire */
+#Register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0 10px;
+}
+
+form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px; /* Coins arrondis */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px; /* Largeur maximale du formulaire */
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 16px; /* Espacement entre les champs */
+}
+
+input[type="password"] {
+  margin-bottom: 24px; /* Plus d'espace sous le champ mot de passe */
+}
+
+p {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 15px; /* Espacement entre le texte d'erreur et le champ */
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: white;
+  background-color: #007BFF; /* Bleu pour les boutons */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3; /* Changer la couleur au survol */
+}
+
+button[type="submit"] {
+  background-color: #28a745; /* Vert pour le bouton de soumission */
+}
+
+button[type="submit"]:hover {
+  background-color: #218838; /* Vert foncé au survol */
+}
+
+button[type="button"] {
+  background-color: #6c757d; /* Gris pour le bouton "Connexion" */
+}
+
+button[type="button"]:hover {
+  background-color: #5a6268; /* Gris plus foncé au survol */
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 500px) {
+  form {
+    padding: 20px; /* Moins d'espace sur mobile */
+  }
+
+  button {
+    padding: 10px; /* Réduire l'espace dans les boutons sur mobile */
+  }
+}
